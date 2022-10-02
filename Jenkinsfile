@@ -31,8 +31,8 @@ pipeline {
                     env.VERSION = branchNumber + "." + finalNum
                     echo env.VERSION
                     sh "mvn versions:set -DnewVersion=$env.VERSION"
-                    sh  "mvn versions:set-property -Dproperty=telemetry.version -DnewVersion=${env.VERSION}"
-                    sh  "mvn versions:set-property -Dproperty=analytics.version -DnewVersion=${env.VERSION}"           
+                    sh  "mvn versions:set-property -Dproperty=telemetry.version -DnewVersion=${branchNumber}.0"
+                    sh  "mvn versions:set-property -Dproperty=analytics.version -DnewVersion=${branchNumber}.0"           
             }
         }
     }
