@@ -42,7 +42,10 @@ pipeline {
             branch "release/*"
         }
       steps {
-        sh "mvn verify"
+          configFileProvider([configFile(fileId: 'exam_maven_settings', variable: 'SETTINGS')]){
+                sh "mvn verify -s $SETTINGS"
+          }
+
       }
     }
 
