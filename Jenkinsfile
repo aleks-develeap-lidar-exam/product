@@ -32,8 +32,10 @@ pipeline {
                     echo env.VERSION
                     sh "mvn versions:set -DnewVersion=$env.VERSION"
                     sh  "mvn versions:set-property -Dproperty=telemetry.version -DnewVersion=${branchNumber}"
-                    sh  "mvn versions:set-property -Dproperty=analytics.version -DnewVersion=${branchNumber}"  
+                    sh  "mvn versions:set-property -Dproperty=analytics.version -DnewVersion=${branchNumber}"
+                    configFileProvider([configFile(fileId: 'exam_maven_settings', variable: 'SETTINGS')]){  
                     sh "mvn dependency:list"
+                    }
                     
             }
         }
