@@ -59,6 +59,7 @@ pipeline {
         when{
             branch "release/*"
         }
+        steps{
         sh "mkdir test"            
             withCredentials([usernamePassword(credentialsId: 'aleks_jfrog', passwordVariable: 'password', usernameVariable: 'myUser')]){
                 script{
@@ -75,7 +76,7 @@ pipeline {
             }
             sh "rm -r test"
 
-
+        }
 
     }
 
