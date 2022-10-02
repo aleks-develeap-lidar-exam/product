@@ -55,6 +55,23 @@ pipeline {
             }
         }
     }
+    stage('Tag'){
+        when {
+                branch "release/*"
+            }
+        steps{
+            script{
+                    sh "git clean -f -x"
+                    sh "git tag -a ${env.VERSION} -m 'version ${env.VERSION}'"
+                    sh "git push --tag"
+            }
+        }
+
 
     }
+
+    
+    }
 }
+
+
