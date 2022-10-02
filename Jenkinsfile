@@ -31,8 +31,8 @@ pipeline {
                     env.VERSION = branchNumber + "." + finalNum
                     echo env.VERSION
                     withCredentials([usernamePassword(credentialsId: 'aleks_jfrog', passwordVariable: 'password', usernameVariable: 'myUser')]){
-                    TELEMETRY_VERSION = sh(returnStdout: true, script: "curl -u $myUser:$password http://artifactory:8082/artifactory/exam-libs-release-local/com/lidar/telemetry/maven-metadata.xml | grep '<version>{branchNumber}' | tail -1 | grep -o '[0-9].[0-9].[0-9]'").trim()
-                    ANALYTICS_VERSION = sh(returnStdout: true, script: "curl -u $myUser:$password http://artifactory:8082/artifactory/exam-libs-release-local/com/lidar/analytics/maven-metadata.xml | grep '<version>{branchNumber}' | tail -1 | grep -o '[0-9].[0-9].[0-9]'").trim()
+                    TELEMETRY_VERSION = sh(returnStdout: true, script: "curl -u $myUser:$password http://artifactory:8082/artifactory/exam-libs-release-local/com/lidar/telemetry/maven-metadata.xml | grep '<version>${branchNumber}' | tail -1 | grep -o '[0-9].[0-9].[0-9]'").trim()
+                    ANALYTICS_VERSION = sh(returnStdout: true, script: "curl -u $myUser:$password http://artifactory:8082/artifactory/exam-libs-release-local/com/lidar/analytics/maven-metadata.xml | grep '<version>${branchNumber}' | tail -1 | grep -o '[0-9].[0-9].[0-9]'").trim()
             }
             }
 
