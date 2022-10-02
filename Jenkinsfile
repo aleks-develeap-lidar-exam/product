@@ -38,10 +38,10 @@ pipeline {
 
                     sh "mvn versions:set -DnewVersion=$env.VERSION"
                     sh  "mvn versions:set-property -Dproperty=telemetry.version -DnewVersion=${TELEMETRY_VERSION}"
-                    sh  "mvn versions:set-property -Dproperty=analytics.version -DnewVersion=${ANALYTICS_VERSION}}"           
+                    sh  "mvn versions:set-property -Dproperty=analytics.version -DnewVersion=${ANALYTICS_VERSION}"           
             }
         }
-    }
+    
  
     stage('Build') {
         when{
